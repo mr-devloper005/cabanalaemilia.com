@@ -1,10 +1,10 @@
 export const siteIdentity = {
   code: process.env.NEXT_PUBLIC_SITE_CODE || 'ca7m4x9q2v',
   name: process.env.NEXT_PUBLIC_SITE_NAME || 'Caban Ala Emilia',
-  tagline: process.env.NEXT_PUBLIC_SITE_TAGLINE || 'Visual directory platform',
+  tagline: process.env.NEXT_PUBLIC_SITE_TAGLINE || 'Visual stories and booking-ready discovery',
   description:
     process.env.NEXT_PUBLIC_SITE_DESCRIPTION ||
-    'An image-led business discovery platform for browsing services, places, and visual listings.',
+    'An image-first discovery site for hospitality visuals, featured properties, and business listings.',
   domain: process.env.NEXT_PUBLIC_SITE_DOMAIN || 'cabanalaemilia.com',
   url: process.env.NEXT_PUBLIC_SITE_URL || 'https://cabanalaemilia.com',
   ogImage: process.env.NEXT_PUBLIC_SITE_OG_IMAGE || '/og-default.png',
