@@ -2,75 +2,75 @@ import type { TaskKey } from '@/lib/site-config'
 
 export const siteContent = {
   navbar: {
-    tagline: 'Independent reading platform',
+    tagline: 'Business listings · Visual gallery',
   },
   footer: {
-    tagline: 'Stories, resources, and discoverable posts',
+    tagline: 'Trusted directory and media discovery',
   },
   hero: {
-    badge: 'Latest stories and visuals',
-    title: ['A thoughtful home for', 'stories, visuals, and discovery.'],
+    badge: 'Gallery meets verified directory',
+    title: ['Showcase brands and', 'moments worth saving.'],
     description:
-      'Explore fresh articles, image-led posts, and discoverable content across the platform through a calmer and clearer browsing experience.',
+      'Browse structured business profiles alongside a living image gallery—built for fast scanning, clear trust cues, and confident next steps.',
     primaryCta: {
-      label: 'Read latest stories',
-      href: '/articles',
+      label: 'Explore directory',
+      href: '/listings',
     },
     secondaryCta: {
-      label: 'Explore visuals',
+      label: 'Open gallery',
       href: '/images',
     },
-    searchPlaceholder: 'Search stories, visuals, listings, and more',
+    searchPlaceholder: 'Search businesses, categories, or visual posts',
     focusLabel: 'Focus',
-    featureCardBadge: 'latest cover rotation',
-    featureCardTitle: 'Latest posts shape the visual identity of the homepage.',
+    featureCardBadge: 'Featured visuals',
+    featureCardTitle: 'Fresh imagery and listings stay in sync on the homepage.',
     featureCardDescription:
-      'Recent images and stories stay at the center of the experience without changing any core platform behavior.',
+      'Spotlight cards rotate between gallery highlights and directory signals so discovery feels cohesive, not fragmented.',
   },
   home: {
     metadata: {
-      title: 'Stories, visuals, and discoverable content',
+      title: 'Business directory and image gallery',
       description:
-        'Explore articles, images, listings, and curated posts through a cleaner reading-first experience.',
-      openGraphTitle: 'Stories, visuals, and discoverable content',
+        'Discover verified listings and browse a curated image gallery—one premium surface for operators and audiences.',
+      openGraphTitle: 'Business directory and image gallery',
       openGraphDescription:
-        'Discover articles, visual posts, and connected content through a calmer reading-first experience.',
-      keywords: ['story platform', 'article site', 'visual content', 'content discovery'],
+        'Explore trusted business pages and immersive visual posts with a unified discovery rhythm.',
+      keywords: ['business directory', 'image gallery', 'local listings', 'visual discovery', 'brand showcase'],
     },
-    introBadge: 'About the platform',
-    introTitle: 'Built for reading, browsing, and connecting different kinds of content.',
+    introBadge: 'Why this platform',
+    introTitle: 'Purpose-built for listings and visual storytelling together.',
     introParagraphs: [
-      'This site brings together article-style reading, visual browsing, and structured discovery so visitors can move naturally between different content types.',
-      'Instead of separating stories, visuals, and supporting resources into disconnected surfaces, the platform keeps them connected in one place with consistent navigation and easier exploration.',
-      'Whether someone starts with a story, an image-led post, a listing, or a resource page, they can keep discovering related content without friction.',
+      'Operators need crisp business metadata while audiences expect gallery-grade imagery. This experience keeps both lanes visible without burying either one.',
+      'Cards, filters, and hero modules mirror how people actually decide: scan proof, compare options, then dive into richer media when curiosity spikes.',
+      'Every surface stays lightweight so mobile discovery stays fast while desktop layouts can breathe with premium spacing and depth.',
     ],
     sideBadge: 'At a glance',
     sidePoints: [
-      'Reading-first homepage with stronger emphasis on stories and imagery.',
-      'Connected sections for articles, visuals, listings, and supporting resources.',
-      'Cleaner browsing rhythm designed to make exploration feel easier.',
-      'Lightweight interactions that keep the experience fast and readable.',
+      'Directory-first scanning with trust-forward badges and location cues.',
+      'Gallery panels that reward large imagery without sacrificing performance.',
+      'Motion and color tuned for clarity—electric blue accents on deep navy structure.',
+      'Responsive navigation that keeps search, upload, and contact actions one tap away.',
     ],
     primaryLink: {
-      label: 'Browse articles',
-      href: '/articles',
+      label: 'Browse directory',
+      href: '/listings',
     },
     secondaryLink: {
-      label: 'See visuals',
+      label: 'View gallery',
       href: '/images',
     },
   },
   cta: {
-    badge: 'Start exploring',
-    title: 'Explore articles, visuals, and resources through one connected experience.',
+    badge: 'Start publishing',
+    title: 'List your business, share standout visuals, and stay discoverable.',
     description:
-      'Move between articles, image-led posts, listings, and resources through one clearer and more connected visual system.',
+      'Create a profile, upload gallery-ready media, and keep your audience moving from curiosity to contact in fewer steps.',
     primaryCta: {
-      label: 'Get Started Free',
+      label: 'Create free account',
       href: '/register',
     },
     secondaryCta: {
-      label: 'Contact Sales',
+      label: 'Talk with us',
       href: '/contact',
     },
   },
@@ -84,16 +84,16 @@ export const taskPageMetadata: Record<Exclude<TaskKey, 'comment' | 'org' | 'soci
     description: 'Read articles, stories, guides, and long-form posts across topics and interests.',
   },
   listing: {
-    title: 'Listings and discoverable pages',
-    description: 'Explore listings, services, brands, and structured pages organized for easier browsing.',
+    title: 'Business directory',
+    description: 'Explore verified listings, services, and brands with structured metadata built for fast decisions.',
   },
   classified: {
     title: 'Classifieds and announcements',
     description: 'Browse classifieds, offers, notices, and time-sensitive posts across categories.',
   },
   image: {
-    title: 'Images and visual posts',
-    description: 'Explore image-led posts, galleries, and visual stories from across the platform.',
+    title: 'Image gallery',
+    description: 'Browse immersive galleries and visual stories that connect back to trusted business profiles.',
   },
   profile: {
     title: 'Profiles and public pages',
@@ -117,13 +117,12 @@ export const taskIntroCopy: Record<
     title: 'Listings, services, and structured pages',
     paragraphs: [
       'Explore listings, services, brands, and discoverable pages across categories. Each entry is organized to make browsing clearer and help visitors quickly understand what a post offers.',
-      'Listings connect naturally with articles, images, resources, and other content types so supporting information stays easy to reach from the same platform.',
+      'Listings pair with the image gallery so proof-rich media and structured metadata stay one click apart.',
       'Browse by category to compare posts in context, discover related content, and move between formats without losing your place.',
     ],
     links: [
-      { label: 'Read articles', href: '/articles' },
-      { label: 'Explore classifieds', href: '/classifieds' },
-      { label: 'View profiles', href: '/profile' },
+      { label: 'Browse gallery', href: '/images' },
+      { label: 'Add a listing', href: '/create/listing' },
     ],
   },
   article: {
@@ -156,13 +155,12 @@ export const taskIntroCopy: Record<
     title: 'Image-led posts and visual stories',
     paragraphs: [
       'Images take the lead in this section through galleries, visual posts, and story-led content where imagery carries the experience.',
-      'These posts connect with articles, listings, and other sections so visuals can act as entry points into deeper content.',
-      'Browse the latest visual updates, then continue into related stories or supporting pages for more context.',
+      'Visual posts anchor back to the business directory so every frame can route to structured trust data when visitors are ready.',
+      'Browse the latest visual updates, then continue into related listings for contact details, hours, and offers.',
     ],
     links: [
-      { label: 'Read articles', href: '/articles' },
-      { label: 'Explore listings', href: '/listings' },
-      { label: 'Open classifieds', href: '/classifieds' },
+      { label: 'Open directory', href: '/listings' },
+      { label: 'Share imagery', href: '/create/image' },
     ],
   },
   profile: {

@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { FileText, Building2, LayoutGrid, Tag, Github, Twitter, Linkedin, Image as ImageIcon, User, ArrowRight, Sparkles } from 'lucide-react'
+import { FileText, Building2, LayoutGrid, Tag, Github, Twitter, Linkedin, Image as ImageIcon, User, ArrowRight, Sparkles, Mail } from 'lucide-react'
 import { SITE_CONFIG, type TaskKey } from '@/lib/site-config'
 import { siteContent } from '@/config/site.content'
 import { getFactoryState } from '@/design/factory/get-factory-state'
@@ -30,6 +30,7 @@ const footerLinks = {
     { name: 'Careers', href: '/careers' },
     { name: 'Blog', href: '/blog' },
     { name: 'Press', href: '/press' },
+    { name: 'Contact', href: '/contact' },
   ],
   resources: [
     { name: 'Help Center', href: '/help' },
@@ -68,12 +69,19 @@ export function Footer() {
             <p className="text-lg font-semibold">{SITE_CONFIG.name}</p>
             <p className="mt-1 text-sm text-[#56604b]">{SITE_CONFIG.description}</p>
           </div>
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap items-center gap-3">
             {enabledTasks.slice(0, 5).map((task) => (
               <Link key={task.key} href={task.route} className="rounded-lg border border-[#d7deca] bg-white px-3 py-2 text-sm font-medium text-[#1f2617] hover:bg-[#ebefdf]">
                 {task.label}
               </Link>
             ))}
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-2 rounded-full border border-[#1f2617]/15 bg-[#1f2617] px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-[#2a341f]"
+            >
+              <Mail className="h-4 w-4 opacity-90" aria-hidden />
+              Contact
+            </Link>
           </div>
         </div>
       </footer>
@@ -96,12 +104,24 @@ export function Footer() {
                 </div>
               </div>
               <p className="mt-5 max-w-md text-sm leading-7 text-slate-300">{SITE_CONFIG.description}</p>
-              {primaryTask ? (
-                <Link href={primaryTask.route} className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#8df0c8] px-4 py-2.5 text-sm font-semibold text-[#07111f] hover:bg-[#77dfb8]">
-                  Explore {primaryTask.label}
-                  <ArrowRight className="h-4 w-4" />
+              <div className="mt-6 flex flex-wrap gap-3">
+                {primaryTask ? (
+                  <Link
+                    href={primaryTask.route}
+                    className="inline-flex items-center gap-2 rounded-full bg-[#8df0c8] px-4 py-2.5 text-sm font-semibold text-[#07111f] shadow-[0_12px_36px_rgba(141,240,200,0.25)] transition hover:bg-[#77dfb8]"
+                  >
+                    Explore {primaryTask.label}
+                    <ArrowRight className="h-4 w-4" aria-hidden />
+                  </Link>
+                ) : null}
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-4 py-2.5 text-sm font-semibold text-white backdrop-blur-sm transition hover:border-[#8df0c8]/45 hover:bg-white/10"
+                >
+                  <Mail className="h-4 w-4 text-[#a8e9d4]" aria-hidden />
+                  Contact us
                 </Link>
-              ) : null}
+              </div>
             </div>
             <div className="grid gap-6 sm:grid-cols-2 lg:col-span-2 lg:grid-cols-3">
               <div>
@@ -150,6 +170,13 @@ export function Footer() {
               </div>
               <h3 className="mt-5 text-3xl font-semibold tracking-[-0.04em]">{SITE_CONFIG.name}</h3>
               <p className="mt-4 max-w-md text-sm leading-7 text-[#72594a]">{SITE_CONFIG.description}</p>
+              <Link
+                href="/contact"
+                className="mt-6 inline-flex items-center gap-2 rounded-full border border-[#dbc6b6] bg-white px-5 py-2.5 text-sm font-semibold text-[#2f1d16] shadow-[0_10px_28px_rgba(47,29,22,0.08)] transition hover:border-[#8b6d5a]/60 hover:text-[#5c3d2c]"
+              >
+                <Mail className="h-4 w-4 text-[#8b6d5a]" aria-hidden />
+                Contact editorial
+              </Link>
             </div>
             <div>
               <h4 className="text-xs font-semibold uppercase tracking-[0.24em] text-[#8b6d5a]">Sections</h4>
@@ -174,33 +201,56 @@ export function Footer() {
   }
 
   return (
-    <footer className="border-t border-slate-200 bg-[linear-gradient(180deg,#ffffff_0%,#f8fafc_100%)] text-slate-950">
+    <footer className="border-t border-slate-200/90 bg-[linear-gradient(180deg,#ffffff_0%,#f1f5fb_100%)] text-slate-950">
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
         <div className="grid gap-10 md:grid-cols-[1.2fr_0.8fr_0.8fr_0.8fr_0.8fr]">
           <div>
             <Link href="/" className="flex items-center gap-3">
-              <div className="h-11 w-11 overflow-hidden rounded-2xl border border-slate-200 bg-white p-1 shadow-sm">
+              <div className="h-11 w-11 overflow-hidden rounded-2xl border border-slate-200/90 bg-white p-1 shadow-[0_12px_40px_rgba(6,18,37,0.08)]">
                 <img src="/favicon.png?v=20260401" alt={`${SITE_CONFIG.name} logo`} width="44" height="44" className="h-full w-full object-contain" />
               </div>
               <div>
-                <span className="block text-lg font-semibold">{SITE_CONFIG.name}</span>
+                <span className="block text-lg font-semibold tracking-tight">{SITE_CONFIG.name}</span>
                 <span className="text-xs uppercase tracking-[0.22em] text-slate-500">{siteContent.footer.tagline}</span>
               </div>
             </Link>
             <p className="mt-5 max-w-sm text-sm leading-7 text-slate-600">{SITE_CONFIG.description}</p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              {primaryTask ? (
+                <Link
+                  href={primaryTask.route}
+                  className="inline-flex items-center gap-2 rounded-full bg-[#0052ff] px-5 py-2.5 text-sm font-semibold text-white shadow-[0_14px_40px_rgba(0,82,255,0.28)] transition hover:bg-[#0040cc]"
+                >
+                  Explore {primaryTask.label}
+                  <ArrowRight className="h-4 w-4" aria-hidden />
+                </Link>
+              ) : null}
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-2 rounded-full border border-slate-200/90 bg-white px-5 py-2.5 text-sm font-semibold text-slate-900 shadow-[0_10px_32px_rgba(6,18,37,0.08)] transition hover:border-[#0052ff]/45 hover:text-[#0052ff] hover:shadow-[0_14px_40px_rgba(0,82,255,0.14)]"
+              >
+                <Mail className="h-4 w-4 text-[#0052ff]" aria-hidden />
+                Contact us
+              </Link>
+            </div>
           </div>
           {(['platform', 'company', 'resources', 'legal'] as const).map((section) => (
             <div key={section}>
-              <h3 className="text-sm font-semibold uppercase tracking-[0.22em] text-slate-500">{section}</h3>
+              <h3 className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-500">{section}</h3>
               <ul className="mt-5 space-y-3 text-sm text-slate-600">
                 {footerLinks[section].map((item: any) => (
-                  <li key={item.name}><Link href={item.href} className="flex items-center gap-2 hover:text-slate-950">{item.icon ? <item.icon className="h-4 w-4" /> : null}{item.name}</Link></li>
+                  <li key={item.name}>
+                    <Link href={item.href} className="flex items-center gap-2 transition hover:text-[#0052ff]">
+                      {item.icon ? <item.icon className="h-4 w-4 opacity-80" /> : null}
+                      {item.name}
+                    </Link>
+                  </li>
                 ))}
               </ul>
             </div>
           ))}
         </div>
-        <div className="mt-12 border-t border-slate-200 pt-6 text-center text-sm text-slate-500">&copy; {new Date().getFullYear()} {SITE_CONFIG.name}. All rights reserved.</div>
+        <div className="mt-12 border-t border-slate-200/80 pt-6 text-center text-sm text-slate-500">&copy; {new Date().getFullYear()} {SITE_CONFIG.name}. All rights reserved.</div>
       </div>
     </footer>
   )
