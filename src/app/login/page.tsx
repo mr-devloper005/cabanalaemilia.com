@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { Bookmark, Building2, FileText, Image as ImageIcon, Sparkles } from 'lucide-react'
 import { NavbarShell } from '@/components/shared/navbar-shell'
 import { Footer } from '@/components/shared/footer'
+import { LoginForm } from '@/components/auth/login-form'
 import { getFactoryState } from '@/design/factory/get-factory-state'
 import { getProductKind } from '@/design/factory/get-product-kind'
 import { LOGIN_PAGE_OVERRIDE_ENABLED, LoginPageOverride } from '@/overrides/login-page'
@@ -9,14 +10,14 @@ import { LOGIN_PAGE_OVERRIDE_ENABLED, LoginPageOverride } from '@/overrides/logi
 function getLoginConfig(kind: ReturnType<typeof getProductKind>) {
   if (kind === 'directory') {
     return {
-      shell: 'bg-[#f8fbff] text-slate-950',
-      panel: 'border border-slate-200 bg-white',
-      side: 'border border-slate-200 bg-slate-50',
+      shell: 'bg-[#f4f7fc] text-slate-950',
+      panel: 'border border-slate-200/90 bg-white shadow-[0_24px_70px_rgba(6,18,37,0.08)]',
+      side: 'border border-slate-200/80 bg-white/90 shadow-sm',
       muted: 'text-slate-600',
-      action: 'bg-slate-950 text-white hover:bg-slate-800',
+      action: 'bg-[#0052ff] text-white hover:bg-[#0040cc]',
       icon: Building2,
-      title: 'Access your business dashboard',
-      body: 'Manage listings, verification details, contact info, and local discovery surfaces from one place.',
+      title: 'Sign in to manage listings and uploads',
+      body: 'Access your dashboard to update business profiles, gallery posts, and discovery settings in one place.',
     }
   }
   if (kind === 'editorial') {
@@ -75,19 +76,15 @@ export default function LoginPage() {
             <h1 className="mt-5 text-4xl font-semibold tracking-[-0.05em]">{config.title}</h1>
             <p className={`mt-5 text-sm leading-8 ${config.muted}`}>{config.body}</p>
             <div className="mt-8 grid gap-4">
-              {['Cleaner product-specific workflows', 'Palette and layout matched to the site family', 'Fewer repeated admin patterns'].map((item) => (
+              {['Session persists locally after sign-in', 'Directory and gallery tools in one dashboard', 'Premium UI tuned for clarity and speed'].map((item) => (
                 <div key={item} className="rounded-[1.5rem] border border-current/10 px-4 py-4 text-sm">{item}</div>
               ))}
             </div>
           </div>
 
-          <div className={`rounded-[2rem] p-8 ${config.panel}`}>
+            <div className={`rounded-[2rem] p-8 ${config.panel}`}>
             <p className="text-xs font-semibold uppercase tracking-[0.24em] opacity-70">Welcome back</p>
-            <form className="mt-6 grid gap-4">
-              <input className="h-12 rounded-xl border border-current/10 bg-transparent px-4 text-sm" placeholder="Email address" />
-              <input className="h-12 rounded-xl border border-current/10 bg-transparent px-4 text-sm" placeholder="Password" type="password" />
-              <button type="submit" className={`inline-flex h-12 items-center justify-center rounded-full px-6 text-sm font-semibold ${config.action}`}>Sign in</button>
-            </form>
+            <LoginForm actionClassName={config.action} />
             <div className={`mt-6 flex items-center justify-between text-sm ${config.muted}`}>
               <Link href="/forgot-password" className="hover:underline">Forgot password?</Link>
               <Link href="/register" className="inline-flex items-center gap-2 font-semibold hover:underline">

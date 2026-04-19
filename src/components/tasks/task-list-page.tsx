@@ -25,12 +25,15 @@ const taskIcons: Record<TaskKey, any> = {
 }
 
 const variantShells = {
-  'listing-directory': 'bg-[radial-gradient(circle_at_top_left,rgba(56,189,248,0.08),transparent_24%),linear-gradient(180deg,#f8fbff_0%,#ffffff_100%)]',
-  'listing-showcase': 'bg-[linear-gradient(180deg,#ffffff_0%,#f4f9ff_100%)]',
+  'listing-directory':
+    'bg-[radial-gradient(circle_at_10%_0%,rgba(0,82,255,0.08),transparent_36%),linear-gradient(180deg,#eef2f9_0%,#ffffff_55%,#f4f7fc_100%)]',
+  'listing-showcase':
+    'bg-[radial-gradient(circle_at_10%_0%,rgba(0,82,255,0.08),transparent_36%),linear-gradient(180deg,#eef2f9_0%,#ffffff_55%,#f4f7fc_100%)]',
   'article-editorial': 'bg-[radial-gradient(circle_at_top_left,rgba(251,191,36,0.08),transparent_20%),linear-gradient(180deg,#fff8ef_0%,#ffffff_100%)]',
   'article-journal': 'bg-[linear-gradient(180deg,#fffdf9_0%,#f7f1ea_100%)]',
   'image-masonry': 'bg-[linear-gradient(180deg,#09101d_0%,#111c2f_100%)] text-white',
-  'image-portfolio': 'bg-[linear-gradient(180deg,#07111f_0%,#13203a_100%)] text-white',
+  'image-portfolio':
+    'bg-[radial-gradient(circle_at_10%_0%,rgba(0,82,255,0.08),transparent_36%),linear-gradient(180deg,#eef2f9_0%,#ffffff_55%,#f4f7fc_100%)]',
   'profile-creator': 'bg-[linear-gradient(180deg,#0a1120_0%,#101c34_100%)] text-white',
   'profile-business': 'bg-[linear-gradient(180deg,#f6fbff_0%,#ffffff_100%)]',
   'classified-bulletin': 'bg-[linear-gradient(180deg,#edf3e4_0%,#ffffff_100%)]',
@@ -60,7 +63,7 @@ export async function TaskListPage({ task, category }: { task: TaskKey; category
   const shellClass = variantShells[layoutKey as keyof typeof variantShells] || 'bg-background'
   const Icon = taskIcons[task] || LayoutGrid
 
-  const isDark = ['image-masonry', 'image-portfolio', 'profile-creator'].includes(layoutKey)
+  const isDark = ['image-masonry', 'profile-creator'].includes(layoutKey)
   const ui = isDark
     ? {
         muted: 'text-slate-300',
@@ -79,10 +82,10 @@ export async function TaskListPage({ task, category }: { task: TaskKey; category
         }
       : {
           muted: 'text-slate-600',
-          panel: 'border border-slate-200 bg-white',
-          soft: 'border border-slate-200 bg-slate-50',
-          input: 'border border-slate-200 bg-white text-slate-950',
-          button: 'bg-slate-950 text-white hover:bg-slate-800',
+          panel: 'rounded-[2rem] border border-slate-200/90 bg-white shadow-[0_24px_70px_rgba(6,18,37,0.08)]',
+          soft: 'rounded-[2rem] border border-slate-200/80 bg-white/90 shadow-sm',
+          input: 'rounded-xl border border-slate-200 bg-white text-slate-950 shadow-inner',
+          button: 'bg-[#0052ff] text-white shadow-[0_12px_36px_rgba(0,82,255,0.25)] hover:bg-[#0040cc]',
         }
 
   return (
@@ -121,17 +124,37 @@ export async function TaskListPage({ task, category }: { task: TaskKey; category
         ) : null}
 
         {layoutKey === 'listing-directory' || layoutKey === 'listing-showcase' ? (
-          <section className="mb-12 grid gap-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
-            <div className={`rounded-[2rem] p-7 shadow-[0_24px_70px_rgba(15,23,42,0.07)] ${ui.panel}`}>
-              <div className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.24em] opacity-70"><Icon className="h-4 w-4" /> {taskConfig?.label || task}</div>
-              <h1 className="mt-4 text-4xl font-semibold tracking-[-0.04em] text-foreground">{taskConfig?.description || 'Latest posts'}</h1>
-              <p className={`mt-4 max-w-2xl text-sm leading-7 ${ui.muted}`}>Built with a cleaner scan rhythm, stronger metadata grouping, and a structure designed for business discovery rather than editorial reading.</p>
-              <div className="mt-6 flex flex-wrap gap-3">
-                <Link href={taskConfig?.route || '#'} className={`inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold ${ui.button}`}>Explore results <ArrowRight className="h-4 w-4" /></Link>
-                <Link href="/search" className={`inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold ${ui.soft}`}>Open search</Link>
+          <section className="mb-12 grid gap-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-stretch">
+            <div className="relative overflow-hidden rounded-[2.5rem] border border-white/10 bg-[linear-gradient(125deg,#030914_0%,#0a1f3d_48%,#071f4d_100%)] p-8 text-white shadow-[0_32px_90px_rgba(6,18,37,0.22)] sm:p-10">
+              <div className="pointer-events-none absolute -right-12 top-1/2 h-56 w-56 -translate-y-1/2 rounded-full bg-[#0052ff]/22 blur-3xl" aria-hidden />
+              <div className="relative">
+                <div className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.24em] text-slate-300">
+                  <Icon className="h-4 w-4 text-[#7eb6ff]" /> {taskConfig?.label || task}
+                </div>
+                <h1 className="mt-5 text-4xl font-semibold tracking-[-0.04em] text-white sm:text-[2.65rem] sm:leading-tight">
+                  {taskConfig?.description || 'Latest posts'}
+                </h1>
+                <p className="mt-5 max-w-2xl text-sm leading-relaxed text-slate-300 sm:text-base">
+                  Structured metadata, crisp imagery, and search tuned for how people actually shortlist businesses—without the noise of generic social feeds.
+                </p>
+                <div className="mt-8 flex flex-wrap gap-3">
+                  <Link
+                    href={taskConfig?.route || '#'}
+                    className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-[#061225] shadow-lg transition hover:bg-slate-100"
+                  >
+                    Explore results
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                  <Link
+                    href="/search"
+                    className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-5 py-3 text-sm font-semibold text-white backdrop-blur transition hover:bg-white/15"
+                  >
+                    Open search
+                  </Link>
+                </div>
               </div>
             </div>
-            <form className={`grid gap-3 rounded-[2rem] p-6 shadow-[0_18px_50px_rgba(15,23,42,0.06)] ${ui.soft}`} action={taskConfig?.route || '#'}>
+            <form className={`grid gap-4 self-stretch rounded-[2rem] p-6 sm:p-8 ${ui.soft}`} action={taskConfig?.route || '#'}>
               <div>
                 <label className={`text-xs uppercase tracking-[0.2em] ${ui.muted}`}>Category</label>
                 <select name="category" defaultValue={normalizedCategory} className={`mt-2 h-11 w-full rounded-xl px-3 text-sm ${ui.input}`}>
@@ -170,13 +193,27 @@ export async function TaskListPage({ task, category }: { task: TaskKey; category
         ) : null}
 
         {layoutKey === 'image-masonry' || layoutKey === 'image-portfolio' ? (
-          <section className="mb-12 grid gap-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
-            <div>
-              <div className={`inline-flex items-center gap-2 rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.22em] ${ui.soft}`}>
-                <Icon className="h-3.5 w-3.5" /> Visual feed
+          <section className="mb-12 grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
+            <div className="relative overflow-hidden rounded-[2.5rem] border border-white/10 bg-[linear-gradient(125deg,#030914_0%,#0a1f3d_48%,#071f4d_100%)] p-8 text-white shadow-[0_32px_90px_rgba(6,18,37,0.22)] sm:p-10">
+              <div className="pointer-events-none absolute -right-10 top-10 h-48 w-48 rounded-full bg-[#0052ff]/25 blur-3xl" aria-hidden />
+              <div className="relative">
+                <div className="inline-flex items-center gap-2 rounded-full bg-[#0052ff] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.22em] text-white shadow-[0_12px_40px_rgba(0,82,255,0.35)]">
+                  <Icon className="h-3.5 w-3.5" /> Gallery
+                </div>
+                <h1 className="mt-6 text-4xl font-semibold tracking-[-0.05em] text-white sm:text-5xl">{taskConfig?.description || 'Latest posts'}</h1>
+                <p className="mt-5 max-w-2xl text-sm leading-relaxed text-slate-300 sm:text-base">
+                  Immersive layouts with generous radii, soft motion, and electric blue accents—aligned with the homepage so gallery browsing feels like part of one product story.
+                </p>
+                <div className="mt-8 flex flex-wrap gap-3">
+                  <Link
+                    href="/listings"
+                    className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-5 py-3 text-sm font-semibold text-white backdrop-blur hover:bg-white/15"
+                  >
+                    View directory
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </div>
               </div>
-              <h1 className="mt-5 text-5xl font-semibold tracking-[-0.05em]">{taskConfig?.description || 'Latest posts'}</h1>
-              <p className={`mt-5 max-w-2xl text-sm leading-8 ${ui.muted}`}>This surface leans into stronger imagery, larger modules, and more expressive spacing so visual content feels materially different from reading and directory pages.</p>
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div className={`min-h-[220px] rounded-[2rem] ${ui.panel}`} />
