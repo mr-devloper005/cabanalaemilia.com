@@ -4,20 +4,17 @@ import { useEffect, useMemo, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator } from '@/components/ui/command'
 import { useToast } from '@/components/ui/use-toast'
-import { FileText, Plus, Tag, Bookmark, Settings, Search } from 'lucide-react'
+import { Plus, Building2, Image as ImageIcon, Settings, Search } from 'lucide-react'
 
 const quickLinks = [
-  { label: 'Go to Social Bookmarks', href: '/sbm', icon: Bookmark },
-  { label: 'Go to Articles', href: '/articles', icon: FileText },
-  { label: 'Go to Listings', href: '/listings', icon: Tag },
-  { label: 'Go to Settings', href: '/settings', icon: Settings },
+  { label: 'Go to Business Directory', href: '/listings', icon: Building2 },
+  { label: 'Go to Image Gallery', href: '/images', icon: ImageIcon },
+  { label: 'Go to Settings', href: '/dashboard/settings', icon: Settings },
 ]
 
 const createActions = [
-  { label: 'Create Article', href: '/create/article', icon: Plus },
   { label: 'Create Listing', href: '/create/listing', icon: Plus },
-  { label: 'Create Classified', href: '/create/classified', icon: Plus },
-  { label: 'Submit Bookmark', href: '/create/sbm', icon: Plus },
+  { label: 'Share Image Post', href: '/create/image', icon: Plus },
 ]
 
 export function CommandPalette() {

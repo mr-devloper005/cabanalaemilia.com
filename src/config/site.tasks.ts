@@ -1,7 +1,7 @@
 export const siteTaskDefinitions = [
   {
     key: 'listing',
-    label: 'Business Listings',
+    label: 'Business Directory',
     route: '/listings',
     description: 'Verified businesses and services.',
     contentType: 'listing',
@@ -25,7 +25,7 @@ export const siteTaskDefinitions = [
   },
   {
     key: 'image',
-    label: 'Images',
+    label: 'Image Gallery',
     route: '/images',
     description: 'Galleries and media-first posts.',
     contentType: 'image',
