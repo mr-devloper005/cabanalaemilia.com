@@ -124,7 +124,9 @@ export default function ContactPage() {
             <Link href="/help">Help center</Link>
           </Button>
           <Button className="rounded-full bg-white px-6 text-[#061225] shadow-lg hover:bg-slate-100" asChild>
-            <Link href="/listings">Browse directory</Link>
+            <a href={`mailto:${process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'contact@cabanalaemilia.com'}`}>
+              Email us
+            </a>
           </Button>
         </>
       }

@@ -1,4 +1,4 @@
-import Link from 'next/link'
+﻿import Link from 'next/link'
 import { ArrowRight, Building2, FileText, Image as ImageIcon, LayoutGrid, Tag, User } from 'lucide-react'
 import { NavbarShell } from '@/components/shared/navbar-shell'
 import { Footer } from '@/components/shared/footer'
@@ -9,6 +9,7 @@ import { SITE_CONFIG, getTaskConfig, type TaskKey } from '@/lib/site-config'
 import { CATEGORY_OPTIONS, normalizeCategory } from '@/lib/categories'
 import { taskIntroCopy } from '@/config/site.content'
 import { getFactoryState } from '@/design/factory/get-factory-state'
+import { getDirectoryUiPreset } from '@/design/directory-ui'
 import { TASK_LIST_PAGE_OVERRIDE_ENABLED, TaskListPageOverride } from '@/overrides/task-list-page'
 
 const taskIcons: Record<TaskKey, any> = {
@@ -59,8 +60,9 @@ export async function TaskListPage({ task, category }: { task: TaskKey; category
     name: post.title,
   }))
   const { recipe } = getFactoryState()
+  const directoryUi = getDirectoryUiPreset()
   const layoutKey = recipe.taskLayouts[task as keyof typeof recipe.taskLayouts] || `${task}-${task === 'listing' ? 'directory' : 'editorial'}`
-  const shellClass = variantShells[layoutKey as keyof typeof variantShells] || 'bg-background'
+  const shellClass = task === 'listing' ? directoryUi.shell : variantShells[layoutKey as keyof typeof variantShells] || 'bg-background'
   const Icon = taskIcons[task] || LayoutGrid
 
   const isDark = ['image-masonry', 'profile-creator'].includes(layoutKey)
@@ -135,7 +137,7 @@ export async function TaskListPage({ task, category }: { task: TaskKey; category
                   {taskConfig?.description || 'Latest posts'}
                 </h1>
                 <p className="mt-5 max-w-2xl text-sm leading-relaxed text-slate-300 sm:text-base">
-                  Structured metadata, crisp imagery, and search tuned for how people actually shortlist businesses—without the noise of generic social feeds.
+                  Structured metadata, crisp imagery, and search tuned for how people actually shortlist businessesâ€”without the noise of generic social feeds.
                 </p>
                 <div className="mt-8 flex flex-wrap gap-3">
                   <Link
@@ -202,7 +204,7 @@ export async function TaskListPage({ task, category }: { task: TaskKey; category
                 </div>
                 <h1 className="mt-6 text-4xl font-semibold tracking-[-0.05em] text-white sm:text-5xl">{taskConfig?.description || 'Latest posts'}</h1>
                 <p className="mt-5 max-w-2xl text-sm leading-relaxed text-slate-300 sm:text-base">
-                  Immersive layouts with generous radii, soft motion, and electric blue accents—aligned with the homepage so gallery browsing feels like part of one product story.
+                  Immersive layouts with generous radii, soft motion, and electric blue accentsâ€”aligned with the homepage so gallery browsing feels like part of one product story.
                 </p>
                 <div className="mt-8 flex flex-wrap gap-3">
                   <Link
@@ -294,3 +296,4 @@ export async function TaskListPage({ task, category }: { task: TaskKey; category
     </div>
   )
 }
+

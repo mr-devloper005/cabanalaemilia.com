@@ -3,8 +3,6 @@ import { PageShell } from '@/components/shared/page-shell'
 import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { mockTeamMembers } from '@/data/mock-data'
 import { SITE_CONFIG } from '@/lib/site-config'
 
 const surface = 'rounded-[1.85rem] border border-slate-200/90 bg-white shadow-[0_22px_70px_rgba(6,18,37,0.08)]'
@@ -83,35 +81,6 @@ export default function AboutPage() {
               <CardContent className="p-6 sm:p-8">
                 <h3 className="text-lg font-semibold text-slate-950">{pillar.title}</h3>
                 <p className="mt-3 text-sm leading-relaxed text-slate-600">{pillar.description}</p>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      </div>
-
-      <div>
-        <div className="mb-6 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-          <h2 className="text-2xl font-semibold tracking-tight text-slate-950">Leadership & specialists</h2>
-          <Link href="/careers" className="text-sm font-semibold text-[#0052ff] hover:text-[#0040cc]">
-            View open roles →
-          </Link>
-        </div>
-        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {mockTeamMembers.map((member) => (
-            <Card key={member.id} className={`${surface} border-0 shadow-none transition hover:-translate-y-1`}>
-              <CardContent className="p-6 sm:p-7">
-                <div className="flex items-center gap-4">
-                  <Avatar className="h-14 w-14 border border-slate-200/80 shadow-sm">
-                    <AvatarImage src={member.avatar} alt={member.name} />
-                    <AvatarFallback className="bg-[#f4f7fc] text-slate-700">{member.name.charAt(0)}</AvatarFallback>
-                  </Avatar>
-                  <div>
-                    <p className="font-semibold text-slate-950">{member.name}</p>
-                    <p className="text-xs font-medium uppercase tracking-wide text-slate-500">{member.role}</p>
-                  </div>
-                </div>
-                <p className="mt-4 text-sm leading-relaxed text-slate-600">{member.bio}</p>
-                <p className="mt-3 text-xs text-slate-500">{member.location}</p>
               </CardContent>
             </Card>
           ))}
