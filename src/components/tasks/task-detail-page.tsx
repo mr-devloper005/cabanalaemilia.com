@@ -1,7 +1,7 @@
 import { ContentImage } from "@/components/shared/content-image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { MapPin, Globe, Phone, Tag, Mail } from "lucide-react";
+import { MapPin, Globe, Phone, Tag, Mail, Users, Link2, Images } from "lucide-react";
 import { NavbarShell } from "@/components/shared/navbar-shell";
 import { Footer } from "@/components/shared/footer";
 import { TaskPostCard } from "@/components/shared/task-post-card";
@@ -167,6 +167,7 @@ export async function TaskDetailPage({ task, slug }: { task: TaskKey; slug: stri
   const images = getImageUrls(post, content);
   const mapEmbedUrl = buildMapEmbedUrl(content.latitude, content.longitude, location);
   const isBookmark = task === "sbm" || task === "social";
+  const isImageTask = task === "image";
   const hideSidebar = isClassified || isArticle || task === "image" || isBookmark;
   const related = (await fetchTaskPosts(task, 6))
     .filter((item) => item.slug !== post.slug)
@@ -310,12 +311,100 @@ export async function TaskDetailPage({ task, slug }: { task: TaskKey; slug: stri
 
             {!isArticle ? (
               <>
-                {!isBookmark ? (
+                {isImageTask ? (
+                  <div className="mx-auto w-full max-w-6xl space-y-6 rounded-2xl border border-border bg-card p-4 sm:p-6">
+                    <div className="grid gap-5 md:grid-cols-[110px_1fr]">
+                      <div className="relative h-[110px] w-[110px] overflow-hidden rounded-xl border border-border bg-muted">
+                        <ContentImage
+                          src={images[0]}
+                          alt={`${post.title} avatar`}
+                          fill
+                          className="object-cover"
+                          intrinsicWidth={220}
+                          intrinsicHeight={220}
+                        />
+                      </div>
+                      <div className="min-w-0">
+                        <h1 className="text-3xl font-semibold text-foreground">{post.title}</h1>
+                        <div className="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-sm text-muted-foreground">
+                          <span className="inline-flex items-center gap-1">
+                            <Users className="h-4 w-4" />
+                            Member
+                          </span>
+                        </div>
+                        {content.website ? (
+                          <a
+                            href={content.website}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="mt-2 inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground"
+                          >
+                            <Link2 className="h-4 w-4" />
+                            {content.website}
+                          </a>
+                        ) : null}
+                      </div>
+                    </div>
+
+                    <div className="space-y-7">
+                        <section>
+                          <h2 className="text-2xl font-semibold text-foreground">About</h2>
+                          <RichContent html={descriptionHtml} className="mt-2 text-base leading-7" />
+                        </section>
+
+                        <section>
+                          <h2 className="text-2xl font-semibold text-foreground">Photos</h2>
+                          <div className="mt-3">
+                            <a
+                              href="#image-photos-modal"
+                              className="inline-flex items-center gap-2 rounded-xl border border-border bg-background px-4 py-2 text-sm font-medium text-foreground hover:bg-muted"
+                            >
+                              <Images className="h-4 w-4" />
+                              View Photos ({images.length})
+                            </a>
+                          </div>
+                          <div
+                            id="image-photos-modal"
+                            className="pointer-events-none fixed inset-0 z-[100] flex items-center justify-center bg-black/70 p-4 opacity-0 transition-opacity duration-200 target:pointer-events-auto target:opacity-100"
+                          >
+                            <a href="#" className="absolute inset-0" aria-label="Close popup" />
+                            <div className="relative z-[101] w-full max-w-6xl rounded-xl border border-border bg-card p-4 sm:p-5">
+                              <a
+                                href="#"
+                                aria-label="Close popup"
+                                className="absolute right-3 top-3 inline-flex h-9 w-9 items-center justify-center rounded-full bg-white text-xl font-semibold text-slate-900 shadow hover:bg-slate-100"
+                              >
+                                ×
+                              </a>
+                              <h3 className="mb-4 text-lg font-semibold text-foreground">All Photos</h3>
+                              <div className="grid max-h-[70vh] gap-3 overflow-y-auto pr-1 sm:grid-cols-2 lg:grid-cols-3">
+                                {images.map((img, index) => (
+                                  <div key={`${img}-${index}`} className="relative aspect-[16/10] overflow-hidden rounded-md border border-border bg-muted">
+                                    <ContentImage
+                                      src={img}
+                                      alt={`${post.title} photo ${index + 1}`}
+                                      fill
+                                      className="object-cover"
+                                      intrinsicWidth={960}
+                                      intrinsicHeight={600}
+                                    />
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          </div>
+                        </section>
+                    </div>
+                  </div>
+                ) : null}
+
+                {!isBookmark && !isImageTask ? (
                   <div className={cn(isClassified ? "w-full" : "")}>
                     <TaskImageCarousel images={images} />
                   </div>
                 ) : null}
 
+                {!isImageTask ? (
                 <div className={cn(isClassified ? "mx-auto w-full max-w-4xl" : "mt-6")}>
                   <div className="flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
                     <Badge variant="secondary" className="inline-flex items-center gap-1">
@@ -332,10 +421,11 @@ export async function TaskDetailPage({ task, slug }: { task: TaskKey; slug: stri
                   <h1 className="mt-4 text-3xl font-semibold text-foreground">{post.title}</h1>
                   <RichContent html={descriptionHtml} className="mt-3 max-w-3xl" />
                 </div>
+                ) : null}
               </>
             ) : null}
 
-            {isClassified ? (
+            {isClassified && !isImageTask ? (
               <div className="mx-auto w-full max-w-4xl rounded-2xl border border-border bg-card p-6">
                 <h2 className="text-lg font-semibold text-foreground">Business details</h2>
                 <div className="mt-4 space-y-3 text-sm text-muted-foreground">
@@ -379,7 +469,7 @@ export async function TaskDetailPage({ task, slug }: { task: TaskKey; slug: stri
               </div>
             ) : null}
 
-            {content.highlights?.length && !isArticle ? (
+            {content.highlights?.length && !isArticle && !isImageTask ? (
               <div className={cn("mt-8 rounded-2xl border border-border bg-card p-6", isClassified ? "mx-auto w-full max-w-4xl" : "")}>
                 <h2 className="text-lg font-semibold text-foreground">Highlights</h2>
                 <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
@@ -390,7 +480,7 @@ export async function TaskDetailPage({ task, slug }: { task: TaskKey; slug: stri
               </div>
             ) : null}
 
-            {isClassified && mapEmbedUrl ? (
+            {isClassified && mapEmbedUrl && !isImageTask ? (
               <div className="mx-auto w-full max-w-4xl rounded-2xl border border-border bg-card p-4">
                 <p className="text-sm font-semibold text-foreground">Location map</p>
                 <div className="mt-4 overflow-hidden rounded-xl border border-border">

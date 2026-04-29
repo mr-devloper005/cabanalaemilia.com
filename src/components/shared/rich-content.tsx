@@ -1,5 +1,13 @@
 import { cn } from "@/lib/utils";
 
+const unescapeHtml = (value: string) =>
+  value
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/&amp;/g, "&");
+
 const escapeHtml = (value: string) =>
   value
     .replace(/&/g, "&amp;")
@@ -19,14 +27,20 @@ const sanitizeRichHtml = (html: string) =>
 
 export const formatRichHtml = (raw?: string | null, fallback = "Details coming soon.") => {
   const source = typeof raw === "string" ? raw.trim() : "";
-  if (!source) return `<p>${escapeHtml(fallback)}</p>`;
-  if (/<[a-z][\s\S]*>/i.test(source)) {
-    return sanitizeRichHtml(source);
+  if (!source) return `<p>${fallback}</p>`;
+  
+  // Unescape HTML entities if content is already escaped
+  const unescapedSource = unescapeHtml(source);
+  
+  // Check if content already contains HTML tags
+  if (/<[a-z][\s\S]*>/i.test(unescapedSource)) {
+    return sanitizeRichHtml(unescapedSource);
   }
 
-  return source
+  // Plain text - convert newlines to paragraphs
+  return unescapedSource
     .split(/\n{2,}/)
-    .map((paragraph) => `<p>${escapeHtml(paragraph.replace(/\n/g, " ").trim())}</p>`)
+    .map((paragraph) => `<p>${paragraph.replace(/\n/g, " ").trim()}</p>`)
     .join("");
 };
 
