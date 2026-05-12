@@ -217,10 +217,17 @@ export async function TaskListPage({ task, category }: { task: TaskKey; category
                 </div>
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-4">
-              <div className={`min-h-[220px] rounded-[2rem] ${ui.panel}`} />
-              <div className={`min-h-[220px] rounded-[2rem] ${ui.soft}`} />
-              <div className={`col-span-2 min-h-[120px] rounded-[2rem] ${ui.panel}`} />
+            <div className={`rounded-[2rem] p-6 ${ui.panel}`}>
+              <p className={`text-xs uppercase tracking-[0.24em] ${ui.muted}`}>Filter by category</p>
+              <form className="mt-4 flex items-center gap-3" action={taskConfig?.route || '#'}>
+                <select name="category" defaultValue={normalizedCategory} className={`h-11 flex-1 rounded-xl px-3 text-sm ${ui.input}`}>
+                  <option value="all">All categories</option>
+                  {CATEGORY_OPTIONS.map((item) => (
+                    <option key={item.slug} value={item.slug}>{item.name}</option>
+                  ))}
+                </select>
+                <button type="submit" className={`h-11 rounded-xl px-4 text-sm font-medium ${ui.button}`}>Apply</button>
+              </form>
             </div>
           </section>
         ) : null}

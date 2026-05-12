@@ -115,20 +115,13 @@ export default function ContactPage() {
       title={`Talk with ${SITE_CONFIG.name}`}
       description="Tell us what you are trying to publish, fix, or launch. We route requests to the right lane—directory, gallery, or partnerships—instead of a single generic queue."
       actions={
-        <>
-          <Button
-            variant="secondary"
-            className="rounded-full border border-white/25 bg-white/10 text-white backdrop-blur hover:bg-white/20"
-            asChild
-          >
-            <Link href="/help">Help center</Link>
-          </Button>
-          <Button className="rounded-full bg-white px-6 text-[#061225] shadow-lg hover:bg-slate-100" asChild>
-            <a href={`mailto:${process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'contact@cabanalaemilia.com'}`}>
-              Email us
-            </a>
-          </Button>
-        </>
+        <Button
+          variant="secondary"
+          className="rounded-full border border-white/25 bg-white/10 text-white backdrop-blur hover:bg-white/20"
+          asChild
+        >
+          <Link href="/help">Help center</Link>
+        </Button>
       }
     >
       <div className="grid gap-8 lg:grid-cols-[1.02fr_0.98fr] lg:items-start">
