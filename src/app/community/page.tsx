@@ -75,12 +75,9 @@ export default function CommunityPage() {
             {mockCommunityGroups.map((group) => (
               <Card key={group.id} className={`${surface} border-0 shadow-none`}>
                 <CardContent className="p-6">
-                  <div className="flex items-start justify-between gap-3">
-                    <div>
-                      <h3 className="font-semibold text-slate-950">{group.name}</h3>
-                      <p className="mt-2 text-sm text-slate-600">{groupNarrative[group.id] || group.focus}</p>
-                    </div>
-                    <span className="rounded-full bg-[#f4f7fc] px-3 py-1 text-xs font-semibold text-slate-700">{group.members.toLocaleString()} members</span>
+                  <div>
+                    <h3 className="font-semibold text-slate-950">{group.name}</h3>
+                    <p className="mt-2 text-sm text-slate-600">{groupNarrative[group.id] || group.focus}</p>
                   </div>
                 </CardContent>
               </Card>

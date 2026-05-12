@@ -9,20 +9,20 @@ const surface = 'rounded-[1.85rem] border border-slate-200/90 bg-white shadow-[0
 
 const topics = [
   {
-    title: 'Launching your directory profile',
-    description: 'Field-by-field guidance for addresses, categories, hours, and trust badges that scan cleanly on mobile.',
+    title: 'Browsing business listings',
+    description: 'How to search, filter by category, and find businesses that match your needs.',
   },
   {
-    title: 'Gallery uploads & moderation',
-    description: 'Aspect ratios, alt text, batch uploads, and how listings stay linked when media updates.',
+    title: 'Exploring the image gallery',
+    description: 'Navigate curated images, use category filters, and discover visual content.',
   },
   {
     title: 'Search & discovery tips',
-    description: 'How ranking signals blend structured metadata with gallery engagement without keyword stuffing.',
+    description: 'How to use search effectively and find relevant listings and images.',
   },
   {
-    title: 'Billing & seats',
-    description: 'Inviting teammates, managing roles, and exporting analytics for leadership reviews.',
+    title: 'Contact & support',
+    description: 'How to reach out for partnerships, business inquiries, or technical support.',
   },
 ]
 
@@ -31,20 +31,11 @@ export default function HelpPage() {
     <PageShell
       eyebrow="Resources"
       title="Help Center"
-      description="Guides for teams publishing business directory pages and gallery posts—organized with the same electric-blue accents and spacious cards as the homepage."
+      description="Guides for browsing business listings and image galleries—organized with clear, actionable steps for each feature."
       actions={
-        <>
-          <Button
-            variant="secondary"
-            className="rounded-full border border-white/25 bg-white/10 text-white backdrop-blur hover:bg-white/20"
-            asChild
-          >
-            <Link href="/status">Platform status</Link>
-          </Button>
-          <Button className="rounded-full bg-white px-6 text-[#061225] shadow-lg hover:bg-slate-100" asChild>
-            <Link href="/contact">Contact support</Link>
-          </Button>
-        </>
+        <Button className="rounded-full bg-white px-6 text-[#061225] shadow-lg hover:bg-slate-100" asChild>
+          <Link href="/contact">Contact support</Link>
+        </Button>
       }
     >
       <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr]">

@@ -38,18 +38,9 @@ export default function AboutPage() {
       title={`About ${SITE_CONFIG.name}`}
       description={`${SITE_CONFIG.name} pairs a modern business directory with a dedicated image gallery—built for operators who need both proof and presence in a single destination.`}
       actions={
-        <>
-          <Button
-            variant="secondary"
-            className="rounded-full border border-white/25 bg-white/10 text-white backdrop-blur hover:bg-white/20"
-            asChild
-          >
-            <Link href="/team">Meet the team</Link>
-          </Button>
-          <Button className="rounded-full bg-white px-6 text-[#061225] shadow-lg hover:bg-slate-100" asChild>
-            <Link href="/contact">Partner with us</Link>
-          </Button>
-        </>
+        <Button className="rounded-full bg-white px-6 text-[#061225] shadow-lg hover:bg-slate-100" asChild>
+          <Link href="/contact">Partner with us</Link>
+        </Button>
       }
     >
       <div className="grid gap-8 lg:grid-cols-[1.12fr_0.88fr] lg:items-start">
